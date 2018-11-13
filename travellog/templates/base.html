@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        {% block body %}
+
+        {% endblock %}
+    </body>
+</html>
+
+
+
+
+
+{% comment %}
+# 变量访问：
+    {{variable name}}
+
+# 标签语法：
+    1.{% for %} ... {% endfor %}
+		内置变量：forloop
+			在循环中允许使用forloop内置变量来获取循环的信息
+			forloop.counter：记录当前循环遍历的次数
+			forloop.counter0：记录当前循环的次数，从0开始
+			forloop.revcounter：记录当前元素从后向前算的位置
+			foorloop.revcounter0：同上，从0开始记录
+			forloop.first：判断是否是第一次循环
+			forloop.last：判断是否是最后一次循环
+    2.{% if %} ... {% endif %}
+	3.{% comment %} ... {% comment %}
+	4.{% load static %} # 加载static资源
+	5.{% static '' %} # 使用static资源
+
+# 过滤器
+    大写： {{value|upper}}
+    小写： {{value|lower}}
+    追加： {{value|add:num}} #value和num可以是列表
+    n位小数: {{value|floatformat:n}}
+    截取保留至n位字符，后面以...来表示未显示完成的内容
+        {{value|truncatechars:n}}
+
+{% comment %}

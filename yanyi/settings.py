@@ -61,9 +61,9 @@ ROOT_URLCONF = 'yanyi.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'BACKEND': 'django.template.backends.django.DjangoTemplates', # 模板的引擎
+        'DIRS': [], # 指定模板的存放目录们, 根目录[os.path.join(BASE_DIR, 'templates')], 应用目录['index.templates']
+        'APP_DIRS': True, # 自动搜索应用中的templates的目录
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
