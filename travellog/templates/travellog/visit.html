@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" type="text/css" href="{% static 'travellog/css/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'travellog/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'travellog/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="top-content">
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 text">
+                        <h1>平行游</h1>
+                        <div class="description">
+                            <p>与自己独处，与世界相遇
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h3>需要邀请码</h3>
+                                <p>请输入一个您拥有的邀请码:</p>
+                            </div>
+                            <div class="form-top-right">
+                                <i class="fa fa-lock"></i>
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            <form role="form" action="/travel/visit/" method="post" class="login-form">
+                                {{ csrf_input }}
+                                <div class="form-group">
+                                    <label class="sr-only" for="name">Name</label>
+                                    <input name="name" placeholder="访问名..." class="name form-control" id="name">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="code">Code</label>
+                                    <input name="code" placeholder="邀请码..." class="code form-control" id="code">
+                                </div>
+                                <button id="submit" class="btn">确认</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Javascript -->
+    <script src="{% static 'travellog/js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'travellog/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'travellog/js/jquery.backstretch.min.js' %}"></script>
+    <script src="{% static 'travellog/js/scripts.js' %}"></script>
+    <script src="{% static 'travellog/js/login.js' %}"></script>
+
+    <script src ="{% static 'tarvellog/js/csrf_token.js' %}" ></script>
+    <script src ="{% static 'tarvellog/js/jquery-1.11.1.min.js' %}"></script>
+{% endblock %}
