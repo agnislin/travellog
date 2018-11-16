@@ -1,11 +1,16 @@
 $(function () {
     $(".js-upload-photos").click(function () {
+        url = $("#fileupload")[0].dataset["url"]
+        url = url.substr(0, url.length - 1)
+        $("#fileupload")[0].dataset["url"] = url + '?name="'+ $("#name").val() + '"&desc="' + $("#description").val() + '"';
+        alert($("#fileupload")[0].dataset["url"]);
         $("#fileupload").click();
     });
 
+
     $("#fileupload").fileupload({
-        dataType: 'json',
         sequentialUploads: true,
+
 
         start: function (e) {
             $("#modal-progress").modal("show");

@@ -3,13 +3,13 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Account
 # Create your views here.
-
+from django.contrib.auth.hashers import make_password, check_password
 from django.shortcuts import render,redirect
 from django.http import JsonResponse
 from django.views import View
 import time
-from .forms import PhotoForm
-from .models import Photo
+from .forms import PictureForm
+from .models import *
 
 
 # def index(request):
@@ -48,21 +48,22 @@ def uploadAlbum(request):
         return render(request, 'travellog/uploadAlbum.html')
 
 
-
-
-
-
 class ProgressBarUploadView(View):
     def get(self, request):
-        photos_list = Photo.objects.all()
-        return render(self.request, 'travellog/userAdmin.html', {'photos': photos_list})
+        photos_list = Picture.objects.all()
+        return render(self.request, 'travellog/userAdmin.html', {'FileDB': photos_list})
 
     def post(self, request):
-        #time.sleep(3)  # You don't need this line. This is just to delay the process so you can see the progress bar testing locally.
-        form = PhotoForm(self.request.POST, self.request.FILES)
+
+        alb = Album.objects.all()[0]
+        print("="*80)
+        print(self.request.POST)
+        pic = Picture(album_group=alb, picture_name=self.request.FILES["file"].name)
+        form = PictureForm(self.request.POST, self.request.FILES, instance=pic)
+
         if form.is_valid():
-            photo = form.save()
-            data = {'is_valid': True, 'name': photo.file.name, 'url': photo.file.url}
+            p = form.save()
+            data = {'is_valid': True, 'name': p.picture_name, 'url': p.file.url}
         else:
             data = {'is_valid': False}
         return JsonResponse(data)
